@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -57,6 +57,18 @@ function Section({children, title}: SectionProps): JSX.Element {
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
+  console.log('Pokemon API');
+
+  useEffect(() => {
+    try {
+      fetch('https://pokeapi.co/api/v2/pokemon/butterfree')
+        .then(raw => raw.json())
+        .then(data => console.log('Name: ', data.name));
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  }, []);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
