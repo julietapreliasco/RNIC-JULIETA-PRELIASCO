@@ -1,51 +1,53 @@
-export const mockedData = [
+import {Data} from '../types/types';
+
+export const mockedData: Data[] = [
   {
-    id: 1,
+    id: 0,
     title: 'Lorem',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque tellus non mauris convallis, quis eleifend metus varius. Aliquam volutpat fermentum eros et luctus.',
     done: true,
   },
   {
-    id: 2,
+    id: 1,
     title: 'Sit',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque tellus non mauris convallis, quis eleifend metus varius. Aliquam volutpat fermentum eros et luctus.',
-    done: true,
+    done: false,
   },
   {
-    id: 3,
+    id: 2,
     title: 'Ipsum',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque tellus non mauris convallis, quis eleifend metus varius. Aliquam volutpat fermentum eros et luctus.',
     done: true,
   },
   {
-    id: 4,
+    id: 3,
     title: 'Dolor',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque tellus non mauris convallis, quis eleifend metus varius. Aliquam volutpat fermentum eros et luctus.',
     done: true,
   },
   {
-    id: 5,
+    id: 4,
     title: 'Consectetur',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque tellus non mauris convallis, quis eleifend metus varius. Aliquam volutpat fermentum eros et luctus.',
-    done: true,
+    done: false,
   },
   {
-    id: 6,
+    id: 5,
     title: 'Adipiscing',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque tellus non mauris convallis, quis eleifend metus varius. Aliquam volutpat fermentum eros et luctus.',
     done: true,
   },
   {
-    id: 7,
+    id: 6,
     title: 'Elit',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque tellus non mauris convallis, quis eleifend metus varius. Aliquam volutpat fermentum eros et luctus.',
-    done: true,
+    done: false,
   },
 ];
