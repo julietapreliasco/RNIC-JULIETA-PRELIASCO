@@ -23,6 +23,12 @@ export const styles = StyleSheet.create({
     backgroundColor: isAndroid ? '#6e6ec9' : 'black',
     alignItems: 'center',
   },
+  disabledBtn: {
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: isAndroid ? '#b4b4d1' : 'black',
+    alignItems: 'center',
+  },
   buttonText: {
     fontSize: 20,
     color: 'white',

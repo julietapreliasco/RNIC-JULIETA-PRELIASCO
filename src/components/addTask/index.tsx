@@ -13,13 +13,15 @@ export const AddTask = ({addNewData}: AddTaskProps) => {
       title: title,
       description: description,
     };
-    if (title.length || description.length) {
+    if (isButtonDisabled === false) {
       addNewData(newData);
     }
     Keyboard.dismiss();
     setTitle('');
     setDescription('');
   };
+
+  const isButtonDisabled = !(title.length && description.length);
 
   return (
     <View style={styles.container}>
@@ -41,7 +43,10 @@ export const AddTask = ({addNewData}: AddTaskProps) => {
         onChangeText={value => setDescription(value)}
         onSubmitEditing={() => descriptionRef.current?.blur()}
       />
-      <TouchableOpacity onPress={onSubmitPress} style={styles.button}>
+      <TouchableOpacity
+        onPress={onSubmitPress}
+        style={isButtonDisabled ? styles.disabledBtn : styles.button}
+        disabled={isButtonDisabled}>
         <Text style={styles.buttonText}>Send</Text>
       </TouchableOpacity>
     </View>
