@@ -18,10 +18,15 @@ import {isAndroid} from './src/constants/utils';
 import {AddTask} from './src/components/addTask';
 import {Header} from './src/components/header';
 import {NewData} from './src/types/types';
+import RNBootSplash from 'react-native-bootsplash';
 
 function App(): JSX.Element {
   const emptyList = <Text style={styles.emptyList}>No data here!</Text>;
   const [tasksList, setTasksList] = useState(mockedData);
+
+  useEffect(() => {
+    RNBootSplash.hide({fade: true});
+  });
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
