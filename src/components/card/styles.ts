@@ -19,9 +19,12 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: isAndroid ? '#283039' : 'white',
+    fontFamily: 'Lato-Bold',
   },
   description: {
     color: isAndroid ? '#283039' : 'white',
+    fontFamily: 'Lato-Regular',
+    fontSize: 17,
   },
   state: {
     marginTop: 15,
@@ -30,5 +33,6 @@ export const styles = StyleSheet.create({
     borderTopColor: isAndroid ? '#444044' : 'white',
     textAlign: 'right',
     color: isAndroid ? 'black' : 'white',
+    fontFamily: 'Lato-Bold',
   },
 });
