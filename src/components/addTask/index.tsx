@@ -2,6 +2,8 @@ import React, {useRef, useState} from 'react';
 import {Keyboard, TextInput} from 'react-native';
 import {AddTaskProps} from '../../types/types';
 import {Button, ButtonText, Input, Title, Wrapper} from './styles';
+import PlusIcon from '../../assets/icons/plus-circle.svg';
+import {theme} from '../../constants/theme';
 
 export const AddTask = ({addNewData}: AddTaskProps) => {
   const [title, setTitle] = useState<string>('');
@@ -29,16 +31,16 @@ export const AddTask = ({addNewData}: AddTaskProps) => {
       <Input
         placeholder="Title"
         value={title}
-        onChangeText={value => setTitle(value)}
+        onChangeText={setTitle}
         onSubmitEditing={() => {
           descriptionRef.current?.focus();
         }}
       />
       <Input
-        // ref={descriptionRef}
+        ref={descriptionRef}
         placeholder="Description"
         value={description}
-        onChangeText={value => setDescription(value)}
+        onChangeText={setDescription}
         onSubmitEditing={() => descriptionRef.current?.blur()}
       />
       <Button
@@ -46,6 +48,7 @@ export const AddTask = ({addNewData}: AddTaskProps) => {
         isButtonDisabled={isButtonDisabled}
         disabled={isButtonDisabled}>
         <ButtonText>Send</ButtonText>
+        <PlusIcon width={21} height={21} stroke={theme.primary} />
       </Button>
     </Wrapper>
   );

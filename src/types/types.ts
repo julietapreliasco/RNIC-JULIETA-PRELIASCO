@@ -7,6 +7,7 @@ export interface Data {
   title: string;
   description: string;
   done: boolean;
+  img?: string;
 }
 
 export interface NewData {

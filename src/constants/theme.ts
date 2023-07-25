@@ -1,8 +1,8 @@
 export const theme = {
-  primary: '#fff',
+  primary: '#e0ddbc',
   secondary: '#000',
-  cardPrimary: '#28a457',
-  cardSecondary: '#bf0390',
-  border: '#444044',
-  disabled: '#bababa',
+  cardPrimary: '#856777',
+  cardSecondary: '#342d3b',
+  disabled: '#b0a0b0',
+  completed: '#9dcfa4',
 };

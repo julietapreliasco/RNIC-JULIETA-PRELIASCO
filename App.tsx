@@ -1,27 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {
   FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   Keyboard,
   AppState,
-  KeyboardAvoidingView,
   Platform,
   StatusBar,
 } from 'react-native';
 
 import {Card} from './src/components/card';
 import {mockedData} from './src/constants/mockedData';
-import {isAndroid} from './src/constants/utils';
 import {AddTask} from './src/components/addTask';
 import {Header} from './src/components/header';
 import {NewData} from './src/types/types';
 import RNBootSplash from 'react-native-bootsplash';
+import {EmptyList, Main, Wrapper} from './styles';
+import {theme} from './src/constants/theme';
 
 function App(): JSX.Element {
-  const emptyList = <Text style={styles.emptyList}>No data here!</Text>;
+  const emptyList = <EmptyList>No data here!</EmptyList>;
   const [tasksList, setTasksList] = useState(mockedData);
 
   useEffect(() => {
@@ -50,45 +47,24 @@ function App(): JSX.Element {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardAvoidingView}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <Wrapper behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <SafeAreaView style={styles.safeArea}>
+        <Main>
           <StatusBar
-            barStyle={isAndroid ? 'dark-content' : 'light-content'}
-            backgroundColor={isAndroid ? 'white' : 'black'}
+            barStyle="light-content"
+            backgroundColor={theme.secondary}
           />
           <Header />
           <FlatList
             data={tasksList}
             renderItem={({item}) => <Card data={item} />}
             ListEmptyComponent={emptyList}
-            style={styles.listContainer}
           />
           <AddTask addNewData={addNewData} />
-        </SafeAreaView>
+        </Main>
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    </Wrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  listContainer: {
-    margin: 10,
-  },
-  safeArea: {
-    flex: 1,
-    backgroundColor: isAndroid ? 'white' : '#e4e0eb',
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-  },
-  emptyList: {
-    fontSize: 20,
-    alignSelf: 'center',
-    margin: 30,
-  },
-});
 
 export default App;
