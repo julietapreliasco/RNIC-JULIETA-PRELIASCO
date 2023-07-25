@@ -1,17 +1,16 @@
-import {StyleSheet} from 'react-native';
-import {isAndroid} from '../../constants/utils';
+import {styled} from 'styled-components/native';
+import {theme} from '../../constants/theme';
 
-export const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    paddingLeft: 10,
-    height: 70,
-    backgroundColor: isAndroid ? '#6e6ec9' : 'black',
-  },
-  mainTitle: {
-    padding: 15,
-    fontWeight: '700',
-    fontSize: 20,
-    color: 'white',
-  },
-});
+export const Wrapper = styled.View`
+  justify-content: center;
+  padding-left: 10px;
+  height: 70px;
+  background-color: ${theme.secondary};
+`;
+
+export const Title = styled.Text`
+  padding: 15px;
+  font-weight: 700;
+  font-size: 20;
+  color: ${theme.primary};
+`;

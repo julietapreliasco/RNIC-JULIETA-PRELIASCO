@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
-import {Keyboard, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Keyboard, TextInput} from 'react-native';
 import {AddTaskProps} from '../../types/types';
-import {styles} from './styles';
+import {Button, ButtonText, Input, Title, Wrapper} from './styles';
 
 export const AddTask = ({addNewData}: AddTaskProps) => {
   const [title, setTitle] = useState<string>('');
@@ -24,10 +24,9 @@ export const AddTask = ({addNewData}: AddTaskProps) => {
   const isButtonDisabled = !(title.length && description.length);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.addTask}>Add new task</Text>
-      <TextInput
-        style={styles.input}
+    <Wrapper>
+      <Title>Add new task</Title>
+      <Input
         placeholder="Title"
         value={title}
         onChangeText={value => setTitle(value)}
@@ -35,20 +34,19 @@ export const AddTask = ({addNewData}: AddTaskProps) => {
           descriptionRef.current?.focus();
         }}
       />
-      <TextInput
-        style={styles.input}
-        ref={descriptionRef}
+      <Input
+        // ref={descriptionRef}
         placeholder="Description"
         value={description}
         onChangeText={value => setDescription(value)}
         onSubmitEditing={() => descriptionRef.current?.blur()}
       />
-      <TouchableOpacity
+      <Button
         onPress={onSubmitPress}
-        style={isButtonDisabled ? styles.disabledBtn : styles.button}
+        isButtonDisabled={isButtonDisabled}
         disabled={isButtonDisabled}>
-        <Text style={styles.buttonText}>Send</Text>
-      </TouchableOpacity>
-    </View>
+        <ButtonText>Send</ButtonText>
+      </Button>
+    </Wrapper>
   );
 };
