@@ -1,3 +1,5 @@
+import {ImageSourcePropType} from 'react-native';
+
 export interface CustomCardProps {
   data: Data;
 }
@@ -7,7 +9,7 @@ export interface Data {
   title: string;
   description: string;
   done: boolean;
-  img?: string;
+  img?: ImageSourcePropType;
 }
 
 export interface NewData {

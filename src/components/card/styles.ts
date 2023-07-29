@@ -4,8 +4,8 @@ import {theme} from '../../constants/theme';
 export const Main = styled.View<{completed: Boolean}>`
   margin: 12px;
   padding: 20px;
-  background-color: ${(completed: {completed: Boolean}) =>
-    completed.completed ? theme.cardPrimary : theme.cardSecondary};
+  background-color: ${props =>
+    props.completed ? theme.cardPrimary : theme.cardSecondary};
   border-radius: 15px;
 `;
 

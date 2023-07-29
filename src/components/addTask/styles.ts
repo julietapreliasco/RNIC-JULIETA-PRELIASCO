@@ -23,8 +23,8 @@ export const Input = styled.TextInput`
 export const Button = styled.TouchableOpacity<{isButtonDisabled: Boolean}>`
   padding: 10px;
   border-radius: 20px;
-  background-color: ${(isButtonDisabled: {isButtonDisabled: Boolean}) =>
-    isButtonDisabled.isButtonDisabled ? theme.disabled : theme.secondary};
+  background-color: ${props =>
+    props.isButtonDisabled ? theme.disabled : theme.secondary};
   align-items: center;
   flex-direction: row;
   justify-content: center;
