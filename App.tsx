@@ -1,6 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {
-  FlatList,
   TouchableWithoutFeedback,
   Keyboard,
   AppState,
@@ -8,14 +7,13 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {Card} from './src/components/card';
 import {mockedData} from './src/constants/mockedData';
-import {AddTask} from './src/components/addTask';
 import {Header} from './src/components/header';
-import {Data, NewData} from './src/types/types';
+import {Data} from './src/types/types';
 import RNBootSplash from 'react-native-bootsplash';
-import {EmptyList, Main, Wrapper} from './styles';
+import {Main, Wrapper} from './styles';
 import {theme} from './src/constants/theme';
+import Navigation from './src/navigation';
 
 interface ContextType {
   tasksList: Data[];
@@ -28,7 +26,6 @@ export const ContextProvider = createContext<ContextType>({
 });
 
 function App(): JSX.Element {
-  const emptyList = <EmptyList>No data here!</EmptyList>;
   const [tasksList, setTasksList] = useState(mockedData);
 
   useEffect(() => {
@@ -51,16 +48,6 @@ function App(): JSX.Element {
     setTasksList,
   };
 
-  const addNewData = (newData: NewData) => {
-    const newTask = {
-      id: tasksList.length + 1,
-      title: newData.title,
-      description: newData.description,
-      done: false,
-    };
-    setTasksList([...tasksList, newTask]);
-  };
-
   return (
     <ContextProvider.Provider value={contextValue}>
       <Wrapper behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -71,12 +58,7 @@ function App(): JSX.Element {
               backgroundColor={theme.secondary}
             />
             <Header />
-            <FlatList
-              data={tasksList}
-              renderItem={({item}) => <Card data={item} />}
-              ListEmptyComponent={emptyList}
-            />
-            <AddTask addNewData={addNewData} />
+            <Navigation />
           </Main>
         </TouchableWithoutFeedback>
       </Wrapper>

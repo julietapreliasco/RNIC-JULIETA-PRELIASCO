@@ -12,6 +12,6 @@ export const Main = styled.SafeAreaView`
 
 export const EmptyList = styled.Text`
   font-size: 20;
-  align-self: 'center';
+  align-self: center;
   margin: 30px;
 `;

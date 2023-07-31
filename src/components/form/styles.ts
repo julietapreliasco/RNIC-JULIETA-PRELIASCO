@@ -35,3 +35,8 @@ export const ButtonText = styled.Text`
   color: ${theme.primary};
   margin-right: 10px;
 `;
+
+export const TitleWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;

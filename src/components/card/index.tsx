@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {CustomCardProps} from '../../types/types';
+import {CustomCardProps, Data} from '../../types/types';
 import {
   Title,
   Description,
@@ -12,12 +12,17 @@ import {
 } from './styles';
 import CheckIcon from '../../assets/icons/check.svg';
 import {theme} from '../../constants/theme';
-import DeleteIcon from '../../assets/icons/trash-2.svg';
 import EditIcon from '../../assets/icons/edit-2.svg';
+import {Routes} from '../../types/enums';
 
-export const Card = ({data}: CustomCardProps): JSX.Element => {
+export const Card = ({data, navigation}: CustomCardProps): JSX.Element => {
   const {title, description, done, img} = data;
   const [completed, setCompletedTask] = useState<boolean>(done);
+  const [selectedTask, setSelectedTask] = useState<Data>();
+
+  useEffect(() => {
+    setSelectedTask(data);
+  }, [data]);
 
   return (
     <TouchableOpacity onPress={() => setCompletedTask(!completed)}>
@@ -26,15 +31,10 @@ export const Card = ({data}: CustomCardProps): JSX.Element => {
         <TitleContainer>
           <Title>{title}</Title>
           <IconsContainer>
-            <TouchableOpacity>
-              <DeleteIcon
-                width={20}
-                height={20}
-                style={{marginRight: 10}}
-                stroke={theme.primary}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(Routes.EDIT_TASK, {data: selectedTask})
+              }>
               <EditIcon width={20} height={20} stroke={theme.primary} />
             </TouchableOpacity>
           </IconsContainer>
