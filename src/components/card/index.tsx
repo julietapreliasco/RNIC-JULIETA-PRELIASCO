@@ -9,6 +9,7 @@ import {
   TitleContainer,
   IconsContainer,
   Image,
+  Date,
 } from './styles';
 import CheckIcon from '../../assets/icons/check.svg';
 import {theme} from '../../constants/theme';
@@ -16,7 +17,7 @@ import EditIcon from '../../assets/icons/edit-2.svg';
 import {Routes} from '../../types/enums';
 
 export const Card = ({data, navigation}: CustomCardProps): JSX.Element => {
-  const {title, description, done, img} = data;
+  const {title, description, done, img, date} = data;
   const [completed, setCompletedTask] = useState<boolean>(done);
   const [selectedTask, setSelectedTask] = useState<Data>();
 
@@ -39,6 +40,7 @@ export const Card = ({data, navigation}: CustomCardProps): JSX.Element => {
             </TouchableOpacity>
           </IconsContainer>
         </TitleContainer>
+        {date && <Date>Deadline: {date?.toDateString()}</Date>}
         <Description>{description}</Description>
         <State>
           {completed ? <CheckIcon stroke={theme.completed} /> : 'Not completed'}

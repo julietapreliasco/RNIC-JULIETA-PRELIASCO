@@ -2,7 +2,6 @@ import React, {createContext, useEffect, useState} from 'react';
 import {
   TouchableWithoutFeedback,
   Keyboard,
-  AppState,
   Platform,
   StatusBar,
 } from 'react-native';
@@ -30,17 +29,6 @@ function App(): JSX.Element {
 
   useEffect(() => {
     RNBootSplash.hide({fade: true});
-  });
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', nextAppState => {
-      if (nextAppState === 'background') {
-        return setTasksList([]);
-      }
-    });
-    return () => {
-      subscription.remove();
-    };
   });
 
   const contextValue = {

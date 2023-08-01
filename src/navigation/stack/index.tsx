@@ -1,10 +1,10 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import List from '../../screens';
 import {Routes} from '../../types/enums';
 import EditTask from '../../screens/editTask';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const ListStackNavigator = () => {
   return (

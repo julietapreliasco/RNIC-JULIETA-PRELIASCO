@@ -54,3 +54,12 @@ export const Image = styled.Image`
   border-radius: 5px;
   align-self: center;
 `;
+
+export const Date = styled.Text`
+  padding-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: ${theme.primary};
+  max-width: 240px;
+  font-family: 'Lato-Regular';
+`;

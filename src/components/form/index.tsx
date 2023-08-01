@@ -1,26 +1,31 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Keyboard, TextInput} from 'react-native';
+import {Keyboard, Text, TextInput, TouchableOpacity} from 'react-native';
 import {Data, FormProps} from '../../types/types';
 import {
-  Button,
+  SendButton,
   ButtonText,
   Input,
   Title,
   TitleWrapper,
   Wrapper,
+  DateModalButton,
+  DatePickerContainer,
 } from './styles';
 import PlusIcon from '../../assets/icons/plus-circle.svg';
 import {theme} from '../../constants/theme';
 import {ContextProvider} from '../../../App';
 import {NewData} from '../../types/types';
 import {Routes} from '../../types/enums';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import DeleteIcon from '../../assets/icons/trash-2.svg';
+import DatePicker from 'react-native-date-picker';
+import DatePickerIcon from '../../assets/icons/calendar.svg';
 
 export const Form = ({isEditing, selectedData, navigation}: FormProps) => {
   const {setTasksList, tasksList} = useContext(ContextProvider);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
   const descriptionRef = useRef<TextInput>(null);
   const isButtonDisabled = !(title.length && description.length);
 
@@ -30,6 +35,7 @@ export const Form = ({isEditing, selectedData, navigation}: FormProps) => {
       title: newData.title,
       description: newData.description,
       done: false,
+      date: date,
     };
     setTasksList([...tasksList, newTask]);
   };
@@ -55,17 +61,18 @@ export const Form = ({isEditing, selectedData, navigation}: FormProps) => {
     const newData = {
       title: title,
       description: description,
+      date: date,
     };
     if (isButtonDisabled === false) {
       if (isEditing) {
         editData(newData);
       } else {
         addNewData(newData);
+        setTitle('');
+        setDescription('');
       }
     }
     Keyboard.dismiss();
-    setTitle('');
-    setDescription('');
     navigation.navigate(Routes.LIST);
   };
 
@@ -108,18 +115,39 @@ export const Form = ({isEditing, selectedData, navigation}: FormProps) => {
       />
       <Input
         ref={descriptionRef}
+        multiline
         placeholder="Description"
         value={description}
         onChangeText={setDescription}
         onSubmitEditing={() => descriptionRef.current?.blur()}
       />
-      <Button
+      <DatePickerContainer>
+        <Text>{selectedData?.date?.toDateString()}</Text>
+        <>
+          <DateModalButton onPress={() => setOpen(true)}>
+            <DatePickerIcon stroke={'black'} />
+          </DateModalButton>
+          <DatePicker
+            modal
+            open={open}
+            mode="date"
+            date={date}
+            androidVariant="nativeAndroid"
+            onConfirm={date => {
+              setOpen(false);
+              setDate(date);
+            }}
+            onCancel={() => setOpen(false)}
+          />
+        </>
+      </DatePickerContainer>
+      <SendButton
         onPress={onSubmitPress}
         isButtonDisabled={isButtonDisabled}
         disabled={isButtonDisabled}>
         <ButtonText>{isEditing ? 'Edit' : 'Add'}</ButtonText>
         <PlusIcon width={21} height={21} stroke={theme.primary} />
-      </Button>
+      </SendButton>
     </Wrapper>
   );
 };

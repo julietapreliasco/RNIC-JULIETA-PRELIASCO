@@ -20,7 +20,7 @@ export const Input = styled.TextInput`
   margin-bottom: 10px;
 `;
 
-export const Button = styled.TouchableOpacity<{isButtonDisabled: Boolean}>`
+export const SendButton = styled.TouchableOpacity<{isButtonDisabled: Boolean}>`
   padding: 10px;
   border-radius: 20px;
   background-color: ${props =>
@@ -39,4 +39,16 @@ export const ButtonText = styled.Text`
 export const TitleWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
+`;
+
+export const DatePickerContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 5px;
+`;
+
+export const DateModalButton = styled.TouchableOpacity`
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 `;
