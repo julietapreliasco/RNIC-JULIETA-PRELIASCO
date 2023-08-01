@@ -4,8 +4,8 @@ import {theme} from '../../constants/theme';
 export const Main = styled.View<{completed: Boolean}>`
   margin: 12px;
   padding: 20px;
-  background-color: ${(completed: {completed: Boolean}) =>
-    completed.completed ? theme.cardPrimary : theme.cardSecondary};
+  background-color: ${props =>
+    props.completed ? theme.cardPrimary : theme.cardSecondary};
   border-radius: 15px;
 `;
 
@@ -53,4 +53,13 @@ export const Image = styled.Image`
   margin: 15px;
   border-radius: 5px;
   align-self: center;
+`;
+
+export const Date = styled.Text`
+  padding-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: ${theme.primary};
+  max-width: 240px;
+  font-family: 'Lato-Regular';
 `;

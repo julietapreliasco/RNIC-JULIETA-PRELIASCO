@@ -20,11 +20,11 @@ export const Input = styled.TextInput`
   margin-bottom: 10px;
 `;
 
-export const Button = styled.TouchableOpacity<{isButtonDisabled: Boolean}>`
+export const SendButton = styled.TouchableOpacity<{isButtonDisabled: Boolean}>`
   padding: 10px;
   border-radius: 20px;
-  background-color: ${(isButtonDisabled: {isButtonDisabled: Boolean}) =>
-    isButtonDisabled.isButtonDisabled ? theme.disabled : theme.secondary};
+  background-color: ${props =>
+    props.isButtonDisabled ? theme.disabled : theme.secondary};
   align-items: center;
   flex-direction: row;
   justify-content: center;
@@ -34,4 +34,21 @@ export const ButtonText = styled.Text`
   font-size: 20px;
   color: ${theme.primary};
   margin-right: 10px;
+`;
+
+export const TitleWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const DatePickerContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 5px;
+`;
+
+export const DateModalButton = styled.TouchableOpacity`
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 `;
